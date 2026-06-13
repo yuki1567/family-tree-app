@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --outfile=dist/index.js",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1",
+    "hono": "^4",
+    "shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "esbuild": "^0.24",
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}

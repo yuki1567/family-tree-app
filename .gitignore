@@ -8,3 +8,9 @@ tmp/
 
 # エディタ（Zed）
 .zed/
+
+# 依存・ビルド成果物
+node_modules/
+dist/
+.turbo/
+.vite/
