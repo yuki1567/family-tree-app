@@ -1,0 +1,10 @@
+# OS 生成物
+.DS_Store
+Thumbs.db
+
+# ログ・一時ファイル
+*.log
+tmp/
+
+# エディタ（Zed）
+.zed/
