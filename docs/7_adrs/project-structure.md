@@ -94,6 +94,8 @@ pnpm workspace に Turborepo を組み合わせ、タスク（build / dev / test
 - ※ Vite / tsx は型チェックをしない（変換のみ）ため、`type-check`（`tsc --noEmit`）スクリプトは各パッケージに必ず用意し、Turborepo / CI で回す。
 - 再検討の契機: ①パッケージ数・コード量が増えて型チェックが遅くなる、②`shared` をビルド成果物（.d.ts）として配布する方式に変える。その際に composite / references を導入し、tsc レベルの増分チェックを足す。
 
+各設定（`tsconfig.base.json` と各パッケージの上書き）の詳細な理由は、別 ADR [TypeScript 設定（tsconfig）](./tsconfig.md) に分割して記載する。
+
 ### 5. backend のビルド/実行方針 — dev: tsx ／ 本番バンドル: esbuild
 - **dev**: backend は `tsx` で TS を直接実行（バンドル不要）。
 - **型チェック**: 各パッケージで `tsc --noEmit`（Turborepo / CI で実行）。
