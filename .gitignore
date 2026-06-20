@@ -15,8 +15,11 @@ dist/
 .turbo/
 .vite/
 .pnpm-store/
-.mcp.json
 
 # 環境変数
 .env
 .env.*
+
+# Claude Code（共有設定のみ追跡、個人設定・ワークトリーは除外）
+.claude/*
+!.claude/settings.json
