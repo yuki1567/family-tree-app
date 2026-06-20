@@ -1,0 +1,35 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": [
+			"**",
+			"!**/dist",
+			"!**/.turbo",
+			"!**/coverage",
+			"!.claude",
+			"!.mcp.json",
+			"!.devcontainer"
+		]
+	},
+	"linter": {
+		"rules": {
+			"correctness": {
+				"noUndeclaredDependencies": "error"
+			}
+		}
+	},
+	"formatter": {
+		"expand": "always"
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"semicolons": "asNeeded"
+		}
+	}
+}

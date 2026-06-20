@@ -1,14 +1,18 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["tsconfig.base.json"],
-  "tasks": {
-    "build": {
-      "outputs": ["dist/**"]
-    },
-    "type-check": {},
-    "dev": {
-      "cache": false,
-      "persistent": true
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": [
+		"tsconfig.base.json"
+	],
+	"tasks": {
+		"build": {
+			"outputs": [
+				"dist/**"
+			]
+		},
+		"type-check": {},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		}
+	}
 }
