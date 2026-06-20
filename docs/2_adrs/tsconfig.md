@@ -83,8 +83,8 @@ tsc では出力せず、型チェック専用にする。実際の JS 出力は
 `noUnusedLocals` / `noUnusedParameters` / `noFallthroughCasesInSwitch` 等は tsconfig に入れない。
 
 **理由**
-- 未使用変数・switch フォールスルー等は静的解析（Lint）の領分であり、ESLint 側（issue #5）で一元的に扱う方が責務が綺麗。
-- Vite テンプレはこれらを tsconfig に含むが、Lint ツールと役割が重複するため本プロジェクトでは tsconfig から外す。
+- 未使用変数・switch フォールスルー等は静的解析の領分であり、lintツールで一元的に扱う方が責務が綺麗。
+- Vite テンプレはこれらを tsconfig に含むが、lintツールと役割が重複するため本プロジェクトでは tsconfig から外す。
 
 ### 8. 各パッケージの上書き
 base を共通に保ち、環境差分のみ各パッケージで上書きする。
