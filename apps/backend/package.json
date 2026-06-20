@@ -10,14 +10,15 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@hono/node-server": "^1",
-    "hono": "^4",
-    "shared": "workspace:*"
+    "@hono/node-server": "^2.0.4",
+    "hono": "^4.12.25",
+    "shared": "workspace:*",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "^22",
-    "esbuild": "^0.24",
-    "tsx": "^4",
-    "typescript": "^5"
+    "@types/node": "^24.13.2",
+    "esbuild": "^0.28.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
   }
 }
