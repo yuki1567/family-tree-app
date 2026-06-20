@@ -8,3 +8,15 @@ tmp/
 
 # エディタ（Zed）
 .zed/
+
+# 依存・ビルド成果物
+node_modules/
+dist/
+.turbo/
+.vite/
+.pnpm-store/
+.mcp.json
+
+# 環境変数
+.env
+.env.*

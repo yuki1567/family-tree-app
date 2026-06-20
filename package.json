@@ -1,0 +1,17 @@
+{
+  "name": "family-tree-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.6.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "type-check": "turbo run type-check"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "turbo": "^2.9.18",
+    "typescript": "^6.0.3"
+  }
+}
