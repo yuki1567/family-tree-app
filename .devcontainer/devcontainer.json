@@ -1,12 +1,12 @@
 {
-  // compose を正とし、この設定はそれを参照するだけの薄いレイヤ
-  "name": "family-tree-app",
-  "dockerComposeFile": "../compose.yaml",
-  "service": "workspace",
-  "workspaceFolder": "/workspace",
-  "forwardPorts": [
-    3000,
-    4000,
-    5432
-  ]
+	// compose を正とし、この設定はそれを参照するだけの薄いレイヤ
+	"name": "family-tree-app",
+	"dockerComposeFile": "../compose.yaml",
+	"service": "workspace",
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [
+		3000,
+		4000,
+		5432
+	]
 }
