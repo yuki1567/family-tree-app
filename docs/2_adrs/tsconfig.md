@@ -8,37 +8,8 @@
 
 ## 背景
 - 構成は `tsconfig.base.json`（共通 compilerOptions）を `apps/*`・`packages/*` が `extends` し、環境差分のみ上書きする（project-structure.md 決定 4）。本書はその base と各パッケージの個別設定の選定理由を記録する。
-- 前提: TypeScript 5.9 系 / pnpm + Turborepo / フロントは Vite、backend は dev=tsx・本番=esbuild バンドル。型チェックは各パッケージの `tsc --noEmit`（決定 5）。
+- 前提: TypeScript 6.0 系 / pnpm + Turborepo / フロントは Vite、backend は dev=tsx・本番=esbuild バンドル。型チェックは各パッケージの `tsc --noEmit`（決定 5）。TypeScript を含む各依存の導入理由は [package.json の依存と導入理由](./package-json.md) を参照。
 - 選定にあたり、最新の TypeScript 仕様と Vite 公式 react-ts テンプレートを突き合わせ、context7 で裏取りした。
-
-## 最終構成
-
-`tsconfig.base.json`
-```jsonc
-{
-  "compilerOptions": {
-    "target": "ES2023",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "lib": ["ES2023"],
-    "moduleDetection": "force",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "erasableSyntaxOnly": true,
-    "noEmit": true
-  }
-}
-```
-
-各パッケージの上書き
-- `apps/frontend`: `lib: ["ES2023", "DOM", "DOM.Iterable"]` / `jsx: "react-jsx"` / `types: ["vite/client"]` / `include: ["src", "vite.config.ts"]`
-- `apps/backend`: `types: ["node"]` / `include: ["src"]`
-- `packages/shared`: base を `extends` のみ / `include: ["src"]`
 
 ## 決定事項
 

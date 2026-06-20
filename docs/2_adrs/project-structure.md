@@ -6,13 +6,6 @@
 - 関連 issue: #14
 - 関連ドキュメント: [技術スタック](./tech-stack.md)
 
-## 決定するレイヤ（進捗）
-- [x] パッケージマネージャ
-- [x] モノレポの orchestration（素の workspace か Turborepo 等か）
-- [x] ディレクトリ構成（apps / packages）
-- [x] TypeScript 設定方針
-- [x] backend のビルド/実行方針（共通 tsconfig と各パッケージ）
-
 ## 決定事項
 
 ### 1. パッケージマネージャ — pnpm
@@ -115,3 +108,20 @@ pnpm workspace に Turborepo を組み合わせ、タスク（build / dev / test
 
 **留意点**
 - デプロイ先が Cloudflare Workers / Bun / Deno 等に決まった場合、そのランタイムのバンドル方式（Wrangler 等）へ切り替える余地は残す。esbuild はそれら基盤の土台でもあり、移行コストは大きくない。
+
+### 6. 依存バージョンの指定方針 — 基盤は exact 固定 / npm ライブラリは caret
+依存のバージョン指定を「基盤」と「npm ライブラリ」で分ける。
+
+- **基盤（exact 固定）**: Node（コンテナの `node:24.16.0-...`）/ PostgreSQL（`postgres:18.4-...`）/ pnpm（`packageManager: pnpm@11.6.0`）など実行の土台。版を一切動かさない。
+- **npm ライブラリ（caret 範囲）**: `package.json` では caret（`^`）を使う。ただしメジャーのみの緩い表記（`^5` 等）ではなく、**解決版をフル表記した floor**（`^8.0.16` 等）にする。
+- **再現性は lockfile で担保**: 実際にインストールされる版は `pnpm-lock.yaml` が exact に固定し、コンテナ/CI は `pnpm install --frozen-lockfile` を使う。caret でも全環境で同一版が入る。
+- `.npmrc` に `save-exact=true` は**設定しない**（ライブラリは caret 運用のため）。
+
+**理由**
+- 基盤は微妙な版差が再現性・デバッグ性に直結し、上げる利益も薄いので固定する。
+- npm ライブラリは semver でセキュリティ/バグ修正パッチが継続供給されるため、caret にして互換更新を拾える余地を残す。再現性は lockfile が別レイヤで保証するので、caret でも壊れない。
+- floor をフル表記にすることで「テスト済みの下限」を `package.json` 上に明示できる。
+
+**却下した代替案**
+- 全依存を exact 固定: package.json の意図は明示できるが、ライブラリのパッチ（脆弱性修正含む）まで毎回手で上げる必要が生じメンテ性が落ちる。再現性は lockfile で足りる。
+- メジャーのみの caret（`^5` 等のまま）: 雛形の既定だが floor が不正確で、何でテストしたかが読み取れない。
