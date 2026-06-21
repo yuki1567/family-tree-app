@@ -6,6 +6,9 @@ settings:
 
 catalogs:
   default:
+    hono:
+      specifier: ^4.12.25
+      version: 4.12.25
     typescript:
       specifier: ^6.0.3
       version: 6.0.3
@@ -36,7 +39,7 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0(hono@4.12.25)(zod@4.4.3)
       hono:
-        specifier: ^4.12.25
+        specifier: 'catalog:'
         version: 4.12.25
       shared:
         specifier: workspace:*
@@ -79,6 +82,9 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^6.0.2
         version: 6.0.2(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.1)(tsx@4.22.4))
+      hono:
+        specifier: 'catalog:'
+        version: 4.12.25
       typescript:
         specifier: 'catalog:'
         version: 6.0.3

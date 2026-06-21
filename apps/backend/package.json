@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@hono/node-server": "^2.0.4",
 		"@hono/zod-validator": "^0.8.0",
-		"hono": "^4.12.25",
+		"hono": "catalog:",
 		"shared": "workspace:*",
 		"zod": "catalog:"
 	},

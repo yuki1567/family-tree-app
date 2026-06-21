@@ -53,7 +53,7 @@ pnpm は v10.26+ で、依存の `postinstall` 等ライフサイクルスクリ
 
 ### 4. catalog — 複数パッケージで使う依存のバージョンを一元管理
 
-`pnpm-workspace.yaml` の `catalog:` に複数パッケージで共通利用する依存を登録し、各 `package.json` では `"catalog:"` で参照する。現在の登録対象は `zod` と `typescript`。
+`pnpm-workspace.yaml` の `catalog:` に複数パッケージで共通利用する依存を登録し、各 `package.json` では `"catalog:"` で参照する。
 
 **理由**
 - 複数パッケージが同じ依存を持つ場合、各 `package.json` に別々にバージョンを書くと更新時に複数箇所を直す必要が生じる。catalog に集約することで `pnpm-workspace.yaml` の1行だけ更新すれば全パッケージに反映される。
