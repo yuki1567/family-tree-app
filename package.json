@@ -6,6 +6,8 @@
 	"packageManager": "pnpm@11.6.0",
 	"scripts": {
 		"dev": "turbo run dev",
+		"db:generate": "docker compose exec workspace sh -c 'export INFISICAL_TOKEN=$(infisical login --method=universal-auth --silent --plain) && infisical run --projectId=$INFISICAL_PROJECT_ID --env=dev -- pnpm --filter backend db:generate'",
+		"db:migrate": "docker compose exec workspace sh -c 'export INFISICAL_TOKEN=$(infisical login --method=universal-auth --silent --plain) && infisical run --projectId=$INFISICAL_PROJECT_ID --env=dev -- pnpm --filter backend db:migrate'",
 		"build": "turbo run build",
 		"type-check": "turbo run type-check",
 		"lint": "biome check .",
