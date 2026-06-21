@@ -4,6 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    typescript:
+      specifier: ^6.0.3
+      version: 6.0.3
+    zod:
+      specifier: ^4.4.3
+      version: 4.4.3
+
 importers:
 
   .:
@@ -11,14 +20,11 @@ importers:
       '@biomejs/biome':
         specifier: 2.5.0
         version: 2.5.0
-      '@types/node':
-        specifier: ^24.13.2
-        version: 24.13.2
       turbo:
         specifier: ^2.9.18
         version: 2.9.18
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
 
   apps/backend:
@@ -31,9 +37,9 @@ importers:
         version: 4.12.25
       shared:
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../packages
       zod:
-        specifier: ^4.4.3
+        specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
       '@types/node':
@@ -46,7 +52,7 @@ importers:
         specifier: ^4.22.4
         version: 4.22.4
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
 
   apps/frontend:
@@ -59,7 +65,7 @@ importers:
         version: 19.2.7(react@19.2.7)
       shared:
         specifier: workspace:*
-        version: link:../../packages/shared
+        version: link:../../packages
     devDependencies:
       '@types/react':
         specifier: ^19.2.17
@@ -71,16 +77,22 @@ importers:
         specifier: ^6.0.2
         version: 6.0.2(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.1)(tsx@4.22.4))
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vite:
         specifier: ^8.0.16
         version: 8.0.16(@types/node@24.13.2)(esbuild@0.28.1)(tsx@4.22.4)
 
-  packages/shared:
+  packages:
+
+    dependencies:
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
+
     devDependencies:
       typescript:
-        specifier: ^6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
 
 packages:

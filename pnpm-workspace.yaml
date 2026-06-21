@@ -1,6 +1,10 @@
 packages:
   - "apps/*"
-  - "packages/*"
+  - "packages"
 strictDepBuilds: true
 allowBuilds:
   esbuild: true
+
+catalog:
+  zod: ^4.4.3
+  typescript: ^6.0.3
