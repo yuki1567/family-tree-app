@@ -31,5 +31,19 @@
 			"quoteStyle": "single",
 			"semicolons": "asNeeded"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": [
+				"apps/frontend/src/api/**"
+			],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUndeclaredDependencies": "off"
+					}
+				}
+			}
+		}
+	]
 }
