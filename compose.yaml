@@ -10,7 +10,7 @@ services:
       - workspace-node-modules:/workspace/node_modules
       - frontend-node-modules:/workspace/apps/frontend/node_modules
       - backend-node-modules:/workspace/apps/backend/node_modules
-      - shared-node-modules:/workspace/packages/shared/node_modules
+      - shared-node-modules:/workspace/packages/node_modules
       - pnpm-store:/pnpm-store
     ports:
       - "3000:3000"
@@ -20,7 +20,8 @@ services:
       INFISICAL_UNIVERSAL_AUTH_CLIENT_ID: ${INFISICAL_UNIVERSAL_AUTH_CLIENT_ID:-}
       INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET: ${INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET:-}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     build:
@@ -32,6 +33,11 @@ services:
       INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET: ${INFISICAL_UNIVERSAL_AUTH_CLIENT_SECRET:-}
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   workspace-node-modules:

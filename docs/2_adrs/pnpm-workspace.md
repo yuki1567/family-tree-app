@@ -50,3 +50,19 @@ pnpm は v10.26+ で、依存の `postinstall` 等ライフサイクルスクリ
 
 **却下した代替案**
 - 未設定（既定）: 未許可スクリプトが黙って無視されるため、見逃し・許可漏れに気づきにくい。
+
+### 4. catalog — 複数パッケージで使う依存のバージョンを一元管理
+
+`pnpm-workspace.yaml` の `catalog:` に複数パッケージで共通利用する依存を登録し、各 `package.json` では `"catalog:"` で参照する。
+
+**理由**
+- 複数パッケージが同じ依存を持つ場合、各 `package.json` に別々にバージョンを書くと更新時に複数箇所を直す必要が生じる。catalog に集約することで `pnpm-workspace.yaml` の1行だけ更新すれば全パッケージに反映される。
+- `noUndeclaredDependencies`（Biome ルール）により各パッケージは自身の `package.json` に依存を宣言する必要があるため、ルートにまとめて置く方式は取れない。catalog はこの制約を守りつつバージョンを一元管理できる。
+
+**catalog 対象外とするもの**
+- `@biomejs/biome`: exact 固定・ルート専用（lint-format ADR 決定 3 参照）
+- `@types/node`: backend 専用のため複数パッケージで共有しない
+
+**却下した代替案**
+- 各パッケージに個別宣言（`^x.x.x`）: `pnpm update -r` で一括更新できるが、バージョン指定が複数箇所に散らばる。
+- ルートの `devDependencies` に置く: `noUndeclaredDependencies` ルールに違反する。

@@ -9,7 +9,12 @@
 		"jsx": "react-jsx",
 		"types": [
 			"vite/client"
-		]
+		],
+		"paths": {
+			"@backend/*": [
+				"../backend/src/*"
+			]
+		}
 	},
 	"include": [
 		"src",
